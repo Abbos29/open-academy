@@ -1,0 +1,57 @@
+.illustration {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+@import '../../styles/variables.scss';
+
+
+ .why {
+  background: #fff;
+  color: $color-text;
+  text-align: center;
+}
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  text-align: center;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+}
+ul li {
+  background: $color-bg;
+  margin-bottom: 10px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0;
+}
+.icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, $color-primary 60%, $color-accent 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.note {
+  font-size: 0.98rem;
+  color: $color-primary;
+  text-align: center;
+  background: $color-bg;
+  border-radius: 8px;
+  padding: 10px 16px;
+  opacity: 0.85;
+}

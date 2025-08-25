@@ -1,0 +1,23 @@
+:root {
+  --color-primary: #1a73e8;
+  --color-accent: #ffb300;
+  --color-bg: #f7f8fa;
+  --color-text: #222;
+  --color-success: #2ecc40;
+  --color-danger: #e53935;
+  --font-main: 'Montserrat', Arial, sans-serif;
+}
+
+$color-primary: #1a73e8;
+$color-accent: #ffb300;
+$color-bg: #f7f8fa;
+$color-text: #222;
+$color-success: #2ecc40;
+$color-danger: #e53935;
+$font-main: 'Montserrat', Arial, sans-serif;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

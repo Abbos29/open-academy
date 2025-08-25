@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+
+body {
+  font-family: $font-main;
+  background: $color-bg;
+  color: $color-text;
+  margin: 0;
+  min-height: 100vh;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+.section {
+  padding: 40px 0 32px;
+}
+
+@media (min-width: 700px) {
+  .twocol {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .twocol > * {
+    flex: 1;
+    min-width: 0;
+  }
+}

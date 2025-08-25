@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+
+.contacts {
+  background: $color-bg;
+  color: $color-text;
+  padding: 40px 0 32px;
+  text-align: center;
+}
+.info {
+  margin-top: 18px;
+  font-size: 1.08rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+a {
+  color: $color-primary;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
