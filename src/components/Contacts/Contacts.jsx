@@ -10,10 +10,10 @@ export default function Contacts() {
             <strong>Адрес:</strong> Ташкент, ул. Шахрисабз 7
           </div>
           <div>
-            <strong>Телефон:</strong> <a href="tel:+998781130512">+998 78 113 05 12</a>
+            <strong>Телефон:</strong> <a href="tel:+998900002812">+998 90 000 28 12</a>
           </div>
           <div>
-            <strong>Telegram:</strong> <a href="https://t.me/itacademyuz" target="_blank" rel="noopener">@itacademyuz</a>
+            <strong>Telegram:</strong> <a href="https://t.me/It_academy_manager" target="_blank" rel="noopener">@It_academy_manager</a>
           </div>
         </div>
       </div>

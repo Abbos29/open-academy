@@ -33,10 +33,10 @@ export default function RegistrationForm({ onSuccess }) {
     // Формируем маску +998 XX XXX XX XX
     if (digits.startsWith('998')) digits = digits.slice(3);
     let res = '+998 ';
-    if (digits.length > 0) res += digits.slice(0,2);
-    if (digits.length > 2) res += ' ' + digits.slice(2,5);
-    if (digits.length > 5) res += ' ' + digits.slice(5,7);
-    if (digits.length > 7) res += ' ' + digits.slice(7,9);
+    if (digits.length > 0) res += digits.slice(0, 2);
+    if (digits.length > 2) res += ' ' + digits.slice(2, 5);
+    if (digits.length > 5) res += ' ' + digits.slice(5, 7);
+    if (digits.length > 7) res += ' ' + digits.slice(7, 9);
     return res.trim();
   }
 
@@ -55,19 +55,38 @@ export default function RegistrationForm({ onSuccess }) {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!form.phone || !form.agree) {
       setError('Укажите телефон и согласие.');
       return;
     }
     setError('');
-    if (onSuccess) onSuccess();
+
+    // Формируем сообщение для Telegram
+    const text = `Заявка с сайта IT Academy\nИмя: ${form.name}\nТелефон: ${form.phone}\nПрограмма: ${form.program}`;
+    const token = '7203935667:AAEYXswgxG9necw7L4OYPOTctQ2xiMT0TU4';
+    const chatId = '-1002594242525';
+    try {
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+        }),
+      });
+      if (onSuccess) onSuccess();
+    } catch (err) {
+      setError('Ошибка отправки. Попробуйте позже.');
+    }
   }
 
   return (
     <section className={styles.formSection} id="register" ref={formRef}>
-      <h2 className={styles.title}>Запишитесь на курс</h2>
+      <h2 className={styles.title}>Запишись на день открытых дверей</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input name="name" type="text" placeholder="Ваше имя" value={form.name} onChange={handleChange} autoComplete="name" />
         <input name="phone" type="tel" placeholder="Телефон (+998 XX XXX XX XX)" value={form.phone} onChange={handleChange} required autoComplete="tel" />
@@ -82,7 +101,7 @@ export default function RegistrationForm({ onSuccess }) {
         {error && <div className={styles.error}>{error}</div>}
         <button type="submit" className={styles.cta}>🚀 Отправить заявку</button>
       </form>
-      <div className={styles.underform}>Места ограничены. Номерок для участия в лотерее вы получите лично при регистрации.</div>
+      <div className={styles.underform}>Места ограничены. Номерок для участия в лотерее вы получите лично при регистрации на входе</div>
     </section>
   );
 }
