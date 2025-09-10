@@ -1,21 +1,10 @@
-
 import { useState, useRef, useEffect } from 'react';
 import styles from './RegistrationForm.module.scss';
-
-const programs = [
-  'Frontend',
-  'Design',
-  'Backend',
-  'UI/UX',
-  'Kids',
-  'Другое',
-];
 
 export default function RegistrationForm({ onSuccess }) {
   const [form, setForm] = useState({
     name: '',
     phone: '',
-    program: '',
     agree: false,
   });
   const [error, setError] = useState('');
@@ -28,9 +17,7 @@ export default function RegistrationForm({ onSuccess }) {
   }, []);
 
   function formatUzPhone(val) {
-    // Оставляем только цифры
     let digits = val.replace(/\D/g, '');
-    // Формируем маску +998 XX XXX XX XX
     if (digits.startsWith('998')) digits = digits.slice(3);
     let res = '+998 ';
     if (digits.length > 0) res += digits.slice(0, 2);
@@ -63,16 +50,15 @@ export default function RegistrationForm({ onSuccess }) {
     }
     setError('');
 
-    // Формируем сообщение для Telegram
-    const text = `Заявка с сайта IT Academy\nИмя: ${form.name}\nТелефон: ${form.phone}\nПрограмма: ${form.program}`;
-    const token = '7203935667:AAEYXswgxG9necw7L4OYPOTctQ2xiMT0TU4';
-    const chatId = '-1002594242525';
+    // Сообщение для Telegram
+    const text = `📝 Новая заявка на Open Day IT Academy\n\n👤 Имя: ${form.name}\n📞 Телефон: ${form.phone}`;
+    const token = 'YOUR_BOT_TOKEN';
+    const chatId = 'YOUR_CHAT_ID';
+
     try {
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: chatId,
           text,
@@ -88,20 +74,40 @@ export default function RegistrationForm({ onSuccess }) {
     <section className={styles.formSection} id="register" ref={formRef}>
       <h2 className={styles.title}>Запишись на день открытых дверей</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <input name="name" type="text" placeholder="Ваше имя" value={form.name} onChange={handleChange} autoComplete="name" />
-        <input name="phone" type="tel" placeholder="Телефон (+998 XX XXX XX XX)" value={form.phone} onChange={handleChange} required autoComplete="tel" />
-        <select name="program" value={form.program} onChange={handleChange}>
-          <option value="">Выберите программу</option>
-          {programs.map(p => <option key={p} value={p}>{p}</option>)}
-        </select>
+        <input
+          name="name"
+          type="text"
+          placeholder="Ваше имя"
+          value={form.name}
+          onChange={handleChange}
+          autoComplete="name"
+        />
+        <input
+          name="phone"
+          type="tel"
+          placeholder="Телефон (+998 XX XXX XX XX)"
+          value={form.phone}
+          onChange={handleChange}
+          required
+          autoComplete="tel"
+        />
         <label className={styles.checkboxLabel}>
-          <input name="agree" type="checkbox" checked={form.agree} onChange={handleChange} />
+          <input
+            name="agree"
+            type="checkbox"
+            checked={form.agree}
+            onChange={handleChange}
+          />
           Я согласен на обработку данных
         </label>
         {error && <div className={styles.error}>{error}</div>}
-        <button type="submit" className={styles.cta}>🚀 Отправить заявку</button>
+        <button type="submit" className={styles.cta}>
+          🚀 Отправить заявку
+        </button>
       </form>
-      <div className={styles.underform}>Места ограничены. Номерок для участия в лотерее вы получите лично при регистрации на входе</div>
+      <div className={styles.underform}>
+        Места ограничены. Номерок для участия в лотерее вы получите лично при регистрации на входе
+      </div>
     </section>
   );
 }
