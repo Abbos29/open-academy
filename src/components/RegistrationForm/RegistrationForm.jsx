@@ -52,8 +52,8 @@ export default function RegistrationForm({ onSuccess }) {
 
     // Сообщение для Telegram
     const text = `📝 Новая заявка на Open Day IT Academy\n\n👤 Имя: ${form.name}\n📞 Телефон: ${form.phone}`;
-    const token = 'YOUR_BOT_TOKEN';
-    const chatId = 'YOUR_CHAT_ID';
+    const token = '7203935667:AAEYXswgxG9necw7L4OYPOTctQ2xiMT0TU4';
+    const chatId = '-1002594242525';
 
     try {
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
