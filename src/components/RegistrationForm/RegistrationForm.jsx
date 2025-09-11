@@ -50,8 +50,11 @@ export default function RegistrationForm({ onSuccess }) {
     }
     setError('');
 
+    const digits = form.phone.replace(/\D/g, '');
+    const plainPhone = '+998' + digits.replace(/^998/, '');
+
     // Сообщение для Telegram
-    const text = `📝 Новая заявка на Open Day IT Academy\n\n👤 Имя: ${form.name}\n📞 Телефон: ${form.phone}`;
+    const text = `📝 Новая заявка на Open Day IT Academy\n\n👤 Имя: ${form.name}\n📞 Телефон: ${plainPhone}`;
     const token = '7203935667:AAEYXswgxG9necw7L4OYPOTctQ2xiMT0TU4';
     const chatId = '-1002594242525';
 
